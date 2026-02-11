@@ -212,25 +212,7 @@ export const loginHandler = async (req: Request, res: Response) => {
     }
 };
 
-export const forgotPasswordHandler = async (req: Request, res: Response) => {
-    const { email, password } = req.body;
-    try {
-        const normalizedEmail = email.toLowerCase().trim();
-        const user = await User.findOne({ email: normalizedEmail });
-        if (!user) {
-            return res.status(404).json({ message: "User not found" });
-        }
-
-        const passwordHash = await hashPassword(password);
-        user.passwordHash = passwordHash;
-        user.save();
-        return res
-            .status(200)
-            .json({ message: "Password updated successfully" });
-    } catch {
-        return res.status(500).json({ message: "Internal server error" });
-    }
-};
+export const forgotPasswordHandler = async (req: Request, res: Response) => {};
 
 export const logoutHandler = async (req: Request, res: Response) => {
     const isProd = process.env.NODE_ENV === "production";
@@ -239,4 +221,5 @@ export const logoutHandler = async (req: Request, res: Response) => {
         secure: isProd,
         sameSite: "lax",
     });
+    return res.status(200).json({ message: "Logged out successfully" });
 };

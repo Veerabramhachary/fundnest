@@ -10,7 +10,6 @@ app.use(cors({
     credentials: true,
 }))
 app.use(express.json())
-app.use(cors())
 
 app.use("/use", (req, res) => {
     res.send("use one time token or id")

@@ -1,8 +1,3 @@
-import {Router} from 'express';
-
-const router = Router();
-
-router.get("/total-spend", ()=> {})
 
 // /api/total-spend: Aggregate sum of expenses (use MongoDB $sum).
 ​

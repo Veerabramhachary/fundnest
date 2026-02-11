@@ -15,7 +15,7 @@ const options = [
 const CreateForm = () => {
     return (
         <CardRoot w={"70%"}>
-            <Form action="/create" method="post">
+            <Form>
             <NativeSelect.Root key={"name"} variant={"ghost"}>
                 <NativeSelect.Field placeholder="Select Category">
                     {options.map((item, index)=> (

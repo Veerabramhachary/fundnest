@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
         "target": "es2024",
-        "module": "commonjs",
-        "rootDir": "scr",
+        "module": "es2022",
+        "rootDir": "src",
         "outDir": "./dist",
         "sourceMap": true,
         "strict": true,
@@ -10,5 +10,5 @@
         "skipLibCheck":  true,
         "allowSyntheticDefaultImports": true
     },
-    "include": ["scr"]
+    "include": ["src"]
 }
