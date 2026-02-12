@@ -1,4 +1,4 @@
-import {  Avatar, Flex, HStack, Input, Text } from "@chakra-ui/react";
+import {  Avatar, Flex, HStack, Input } from "@chakra-ui/react";
 import {  BiBell, BiSearch } from "react-icons/bi";
 import { CiSettings } from "react-icons/ci";
 import { FaAngleDown } from "react-icons/fa";
