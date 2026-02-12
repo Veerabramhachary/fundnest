@@ -10,7 +10,7 @@ const Layout = () => {
                 "aside nav"
                 "aside content"
                 `}
-                templateColumns={{md:"250px 1fr", lg:"280px 1fr"}}
+                templateColumns={{md:"auto 1fr", lg:"auto 1fr"}}
                 templateRows="auto 1fr"
         >
             <GridItem area="nav">
@@ -26,4 +26,3 @@ const Layout = () => {
     );
 };
 export default Layout;
-//gridTemplateColumns={{base: "60px 1fr", md:"260px 1fr",}} gridTemplateRows={3}

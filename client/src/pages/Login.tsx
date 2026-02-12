@@ -1,5 +1,4 @@
 import {
-    Button,
     Checkbox,
     Flex,
     HStack,
@@ -12,7 +11,7 @@ import {
 import InputField from "../components/InputField";
 import { useState } from "react";
 import { FaApple, FaGoogle } from "react-icons/fa";
-import ExternalButtons from "../components/ExtenalButtons";
+import CustomButton from "../components/CustomButton";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -32,13 +31,13 @@ const Login = () => {
                 direction={"column"}
                 justify={"center"}
                 align={"center"}
-                gap={4}
+                gap={{base:2, md:4}}
             >
                 <Flex direction={"column"} align={"center"}>
-                    <Text fontWeight={"bold"} lineHeight={1}>
+                    <Text fontWeight={"bold"} lineHeight={1} fontSize={{base: "2xl", md: "3xl", lg:"4xl"}}>
                         Welcome to FundNest👋
                     </Text>
-                    <Text as={"p"} color={"gray.500"}>
+                    <Text as="p" color="gray.500" fontSize={{base: "sm", md: "md"}}>
                         Enter your Email & Password to Sign in
                     </Text>
                 </Flex>
@@ -46,8 +45,8 @@ const Login = () => {
                 <form onSubmit={handleSubmit}>
                     <Flex
                         direction={"column"}
-                        gap={6}
-                        w={"350px"}
+                        gap={{base:3, md:5}}
+                        w={{base:"90vw", sm:"350px"}}
                         border={3}
                         justify={"center"}
                         align={"center"}
@@ -85,17 +84,11 @@ const Login = () => {
                                 <Checkbox.Label>Remember me</Checkbox.Label>
                             </Checkbox.Root>
 
-                            <Text>Forgot Password</Text>
+                            <Link>Forgot Password?</Link>
                         </Flex>
-
-                        <Button
-                            w={"full"}
-                            variant={"solid"}
-                            borderRadius={"lg"}
-                            type="submit"
-                        >
+                        <CustomButton fullWidth={true} type="submit" padding="24px">
                             Login
-                        </Button>
+                        </CustomButton>
                         <Text fontWeight={500}>
                             Don't have an Account?{" "}
                             <Link color={"blue.500"}>Sign Up</Link>
@@ -108,18 +101,14 @@ const Login = () => {
                     <Separator flex={1} borderColor="gray.300" />
                 </HStack>
                 <VStack gap={5} w={"full"}>
-                    <ExternalButtons
-                        text="Continue with Apple"
-                        bgColor="black"
-                        color="white"
-                        icon={<FaApple />}
-                    />
-                    <ExternalButtons
-                        text="Continue with Google"
-                        bgColor="white"
-                        color="black"
-                        icon={<FaGoogle />}
-                    />
+                    <CustomButton colorPalette="black" hoverBg="green.500" hoverColor="black" fullWidth={true}>
+                        <FaApple />
+                        Continue with Apple
+                    </CustomButton>
+                    <CustomButton color="black" bgColor="white" hoverBg="green.500" hoverColor="black" fullWidth={true}>
+                        <FaGoogle />
+                        Continue with Google
+                    </CustomButton>
                 </VStack>
             </Flex>
         </Center>
