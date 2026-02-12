@@ -5,8 +5,11 @@ import {
     CardRoot,
     CardTitle,
     Flex,
+    Icon,
     Text,
 } from "@chakra-ui/react";
+import CustomButton from "../CustomButton";
+import { MdDelete, MdModeEdit } from "react-icons/md";
 
 type ExpenseCardProps = {
     category: string;
@@ -31,18 +34,12 @@ const ExpenseCard = ({ category, amount, date, note }: ExpenseCardProps) => {
                     <Text as={"span"}>Date: {date}</Text>
                     {note ? <Text as={"span"}>Note(short): {note}</Text> : ""}
                     <Flex justify={"space-between"}>
-                        <Button
-                            variant={"surface"}
-                            _hover={{ bgColor: "green.500", color: "white" }}
-                        >
-                            Edit
-                        </Button>
-                        <Button
-                            variant={"surface"}
-                            _hover={{ bgColor: "red.500", color: "white" }}
-                        >
-                            Delete
-                        </Button>
+                        <CustomButton variant="surface" hoverBg="green.500" hoverColor="white">Edit
+                            <Icon><MdModeEdit /></Icon>
+                        </CustomButton>
+                        <CustomButton variant="surface" hoverBg="red.500" hoverColor="white">Delete
+                            <Icon><MdDelete /></Icon>
+                        </CustomButton>
                     </Flex>
                 </Flex>
             </CardBody>

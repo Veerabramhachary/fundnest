@@ -3,10 +3,13 @@ import {
     Card,
     Grid,
     GridItem,
+    Icon,
     Text,
 } from "@chakra-ui/react";
 import { expensesSpending } from "../../data/expensesSpending";
 import ExpenseCard from "./ExpenseCard";
+import CustomButton from "../CustomButton";
+import { MdModeEdit } from "react-icons/md";
 
 
 const ExpenseContent = () => {
@@ -40,9 +43,8 @@ const ExpenseContent = () => {
                             Your spending list is empty. Add your first expense
                             to get started!
                         </Text>
-                        <Button colorScheme="blue" size="lg">
-                            Add Expense
-                        </Button>
+                        <CustomButton bgColor="blue.500" color="white" size="lg">Add Expense
+                        </CustomButton>
                     </Card.Root>
                 </GridItem>
             )}

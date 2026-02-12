@@ -1,4 +1,3 @@
-Here’s a professional `README.md` you can use for your MERN project **FundNest** 👇
 
 ---
 
