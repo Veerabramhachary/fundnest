@@ -17,7 +17,7 @@ const subscriptionSchema = new mongoose.Schema(
         },
         frequency: {
             type: String,
-            enum: ["daily", "Weekly", "monthly", "yearly"],
+            enum: ["daily", "weekly", "monthly", "yearly"],
             required: true,
         },
         autoRenew: {

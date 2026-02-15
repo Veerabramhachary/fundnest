@@ -10,7 +10,6 @@ const expensesSchema = new Schema(
         name: {
             type: String,
             required: true,
-            unique: true
         },
         amount: {
             type: Number,

@@ -1,6 +1,7 @@
 import { type NextFunction, type Request, type Response } from "express";
 import { User } from "../models/user.model.ts";
 import { verifyAccessToken } from "../lib/security/token.ts";
+import { AppError } from "../lib/utils/AppError.ts";
 
 const auth = async (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization;

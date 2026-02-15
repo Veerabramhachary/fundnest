@@ -24,7 +24,7 @@ export const createSubscription = async (req: Request, res: Response) => {
             break
         case "monthly":
             expired = new Date(start);
-            expired.setDate(expired.getMonth() + 1);
+            expired.setMonth(expired.getMonth() + 1);
             break;
         case "yearly":
             expired = new Date(start);
@@ -56,34 +56,35 @@ export const getSubscriptions = async (req: Request, res: Response) => {
     return res.status(200).json(subscriptions);
 };
 
-interface IExpense {
+interface ISubscription {
     title: string;
     amount: number;
     note: string;
 }
-type UpdatedExpenseDTO = Partial<Pick<IExpense, "title" | "amount" | "note">>;
+type UpdatedSubscriptionDTO = Partial<Pick<ISubscription, "title" | "amount" | "note">>;
 export const updateSubscription = async (
-    req: Request<{ id: string }, {}, UpdatedExpenseDTO>,
+    req: Request<{ id: string }, {}, UpdatedSubscriptionDTO>,
     res: Response,
 ) => {
     const { id } = req.params;
+    const userId = (req as any).user?.id;
     const updates = req.body;
 
     const filteredUpdates = Object.fromEntries(
         Object.entries(updates).filter(([_, v]) => v !== undefined),
     );
     // Update Expense
-    const updatedExpense = await Subscriptions.findByIdAndUpdate(
-        id,
+    const updatedSubscription = await Subscriptions.findByIdAndUpdate(
+        {id: id, userId},
         { $set: filteredUpdates },
         { new: true, runValidators: true },
-    ).select("-password");
+    );
 
-    if (!updatedExpense) {
-        throw new AppError(404, "Expense not found");
+    if (!updatedSubscription) {
+        throw new AppError(404, "Subscription not found or not authorized");
     }
 
-    return res.status(200).json(updatedExpense);
+    return res.status(200).json(updatedSubscription);
 };
 
 export const deleteSubscription = async (req: Request, res: Response) => {

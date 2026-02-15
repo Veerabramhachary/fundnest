@@ -18,17 +18,24 @@ interface IUser {
 }
 type UpdatedUserDTO = Partial<Pick<IUser, "name" | "salary">>;
 export const updateMe = async (
-    req: Request<{id: string},
+    req: Request<{},
     {},
     UpdatedUserDTO>,
     res: Response,
 ) => {
-    const userId = req.params.id;
+    const userId = (req as any).user?.id;
+    if (!userId) {
+        throw new AppError(401, "No authentication user");
+    }
     const updates = req.body;
-
-    const filteredUpdates = Object.fromEntries(
-        Object.entries(updates).filter(([_, v]) => v !== undefined),
-    );
+    const allowedFields: (keyof UpdatedUserDTO)[]= ["name", "salary"];
+    const filteredUpdates: Partial<UpdatedUserDTO> = {};
+    for (const field of allowedFields) {
+        if (updates[field] !== undefined){
+            filteredUpdates[field] = updates[field];
+        }
+    }
+    
 
     //Update user
     const updatedUser = await User.findByIdAndUpdate(
@@ -41,5 +48,5 @@ export const updateMe = async (
         throw new AppError(404, "User not found");
     }
 
-    return res.status(200).json(updatedUser);
+    return res.status(200).json({user: updatedUser});
 };

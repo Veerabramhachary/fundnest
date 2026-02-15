@@ -6,6 +6,6 @@ import { asyncHandler } from "../lib/utils/asyncHandler.ts";
 const router = Router();
 
 router.get("/me", auth, asyncHandler(me));
-router.patch("/update/:id", asyncHandler(updateMe));
+router.patch("/update/:id",auth, asyncHandler(updateMe));
 
 export default router;

@@ -7,8 +7,12 @@ import expensesRouter from "./routes/expenses.routes.ts";
 import cookieParser from "cookie-parser";
 import { globalErrorHandler } from "./middleware/globalError.middleware.ts";
 import subscriptionsRouter from './routes/subscriptions.routes.ts'
+const cookieSecret = process.env.COOKIE_SECRET
+if (!cookieSecret && process.env.NODE_ENV === "production"){
+    throw new Error("COOKIE_SECRET must be set in production")
+}
 const app = express();
-app.use(cookieParser(process.env.COOKIE_SECRET || "your_secret_key"));
+app.use(cookieParser(cookieSecret || "dev_secret_replace_in_prod"));
 app.use(
     cors({
         origin: process.env.CLIENT_URL || "http://localhost:5173",
