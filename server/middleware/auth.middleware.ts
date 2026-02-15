@@ -1,6 +1,6 @@
 import { type NextFunction, type Request, type Response } from "express";
 import { User } from "../models/user.model.ts";
-import { verifyAccessToken } from "../lib/token.ts";
+import { verifyAccessToken } from "../lib/security/token.ts";
 
 const auth = async (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization;
@@ -15,11 +15,11 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
         const user = await User.findById(payload.sub);
 
         if (!user) {
-            return res.status(404).json({ message: "User not found" });
+            throw new AppError(404, "User not found");
         }
 
         if (user.tokenVersion !== payload.tokenVersion) {
-            return res.status(401).json({ message: "Token version mismatch" });
+            throw new AppError(403, "Invalid token");
         }
 
         (req as any).user = {
@@ -31,14 +31,12 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
             isVerified: user.isVerified,
             tokenVersion: user.tokenVersion,
         };
+
+        return next();
     } catch (err: any) {
         console.error("Auth middleware error:", err.message);
-        return res
-            .status(403)
-            .json({ message: "Invalid token", error: err.message });
+        next(err);
     }
-
-    next();
 };
 
 export default auth;

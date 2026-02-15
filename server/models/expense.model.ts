@@ -10,6 +10,7 @@ const expensesSchema = new Schema(
         name: {
             type: String,
             required: true,
+            unique: true
         },
         amount: {
             type: Number,
@@ -19,14 +20,19 @@ const expensesSchema = new Schema(
             type: String,
             required: true,
             enum: [
-                "housing",
-                "bills",
-                "food",
-                "ride",
-                "health",
-                "care",
-                "kids/pets",
-                "fun/extras",
+                "Housing",
+                "Bills",
+                "Utilities",
+                "Transportation",
+                "Food",
+                "Ride",
+                "Health",
+                "Care",
+                "Kids/Pets",
+                "Shopping",
+                "Education",
+                "Family",
+                "Miscellaneous"
             ],
         },
         note: {
