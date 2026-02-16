@@ -17,7 +17,7 @@ const subscriptionSchema = new mongoose.Schema(
         },
         frequency: {
             type: String,
-            enum: ["daily", "Weekly", "monthly", "yearly"],
+            enum: ["daily", "weekly", "monthly", "yearly"],
             required: true,
         },
         autoRenew: {
@@ -29,11 +29,11 @@ const subscriptionSchema = new mongoose.Schema(
             enum: [
                 "Gym",
                 "Shopping",
-                "entertainment",
-                "productivity",
-                "shopping",
-                "eduction",
-                "cloud storage",
+                "Entertainment",
+                "Productivity",
+                "Education",
+                "Cloud storage",
+                "Health"
             ],
             required: true,
         },
@@ -43,6 +43,8 @@ const subscriptionSchema = new mongoose.Schema(
         },
         status: {
             type: String,
+            enum: ["active", "expired", "cancelled"],
+            default: "active",
         },
         expired: {
             type: Date,

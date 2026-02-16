@@ -7,7 +7,7 @@ import { MdInsights, MdMoney, MdSubscriptions } from "react-icons/md";
 type linksType = {
     to: string;
     label: string;
-    icon: any;
+    icon: IconType;
 };
 type IconsType = {
     [key: string]: IconType;

@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/react";
 
-interface props {
+interface Props {
     variant?:"solid"| "outline" | "subtle" | "surface" | "ghost" | "plain";
     size?: "xs" | "sm" | "md" | "lg";
     bgColor?: string;
@@ -20,13 +20,13 @@ const CustomButton = ({
     bgColor,
     color,
     hoverBg,
-    hoverColor = "white",
+    hoverColor,
     children,
     fullWidth = false,
     type="button",
     colorPalette,
     padding = "5"
-}: props) => {
+}: Props) => {
     return (
         <Button
             p={padding}

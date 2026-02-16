@@ -112,21 +112,34 @@ It provides powerful analytics, alerts, and secure authentication to give users 
 ```
 FundNest/
 │
-├── client/        # Frontend (React + Vite)
-│   ├── src
-│       ├── components/
-│       ├── pages/
-│       ├── store/     # Zustand store
-│       └── services/  # Axios API handlers
+├── client/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── store/
+│   │   └── services/
 │
-├── server/        # Backend (Node + Express)
+├── server/
+│   ├── config/
 │   ├── controllers/
+│   ├── lib/
+│   │   ├── security/
+│   │   ├── Templates/
+│   │   └── utils/
+│   ├── middleware/
 │   ├── models/
 │   ├── routes/
-│   ├── middleware/
-│   ├── lib/
-│   └── config/
+│   ├── app.ts
+│   ├── server.ts
+│   └── tsconfig.json
+│
+├── .env
+├── .env.example
+├── package.json
+├── package-lock.json
+├── .gitignore
 └── README.md
+
 ```
 
 ---

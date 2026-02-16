@@ -25,18 +25,21 @@ const Sidebar = () => {
             spaceY={6}
             boxShadow="lg"
             display={{ base: "none", md: "flex" }}
-            w={open ? "250px": "100px"}
+            w={open ? "250px" : "100px"}
         >
-            <Button onClick={() => setOpen(!open)} variant="ghost">
+            <Button
+                onClick={() => setOpen(!open)}
+                variant="ghost"
+                aria-label={open ? "Collapse sidebar" : "Expand sidebar"}
+            >
                 <RiMenu3Line />
-            </Button>
+            </Button>{" "}
             {/* logo */}
             <Collapsible.Root open={open}>
                 <Collapsible.Content>
                     <Text fontWeight="medium">FundNest</Text>
                 </Collapsible.Content>
             </Collapsible.Root>
-
             {/* Menu section*/}
             <Box>
                 <Text fontSize="sm" color="gray.400">
@@ -56,7 +59,7 @@ const Sidebar = () => {
                                     }}
                                     transition="0.2s"
                                 >
-                                    <Icon size={"25px"} />
+                                    <Icon size={"23px"} />
                                     <Collapsible.Root open={open}>
                                         <Collapsible.Content>
                                             <Text fontWeight="medium">
@@ -70,61 +73,83 @@ const Sidebar = () => {
                     ))}
                 </VStack>
             </Box>
-
             {/* Support Section */}
             <Box>
                 <Text fontSize="sm" color="gray.400" mb={3}>
                     Support
                 </Text>
                 <VStack align="stretch" spaceY={2} pt={4}>
-                    <HStack
+                    <Button
+                        variant="ghost"
+                        w="full"
+                        justifyContent="flex-start"
                         p={3}
                         borderRadius="lg"
                         _hover={{ bg: "gray.100" }}
-                        cursor="pointer"
-                        transition="0.2s"
+                        onClick={() => {
+                            /* navigation*/
+                        }}
                     >
-                        <FiHelpCircle size={"25px"} />
-                        <Collapsible.Root open={open}>
-                            <Collapsible.Content>
-                                <Text fontWeight="medium">Help Center</Text>
-                            </Collapsible.Content>
-                        </Collapsible.Root>
-                    </HStack>
-                    <HStack
+                        <HStack>
+                            <FiHelpCircle size={"23px"} />
+                            <Collapsible.Root open={open}>
+                                <Collapsible.Content>
+                                    <Text fontWeight="medium">Help Center</Text>
+                                </Collapsible.Content>
+                            </Collapsible.Root>
+                        </HStack>
+                    </Button>{" "}
+                    <Button
+                        variant="ghost"
+                        w="full"
+                        justifyContent="flex-start"
                         p={3}
                         borderRadius="lg"
                         _hover={{ bg: "gray.100" }}
-                        cursor="pointer"
-                        transition="0.2s"
+                        onClick={() => {
+                            /* navigation*/
+                        }}
                     >
-                        <FiSettings size={"25px"} />
-                        <Collapsible.Root open={open}>
-                            <Collapsible.Content>
-                                <Text fontWeight="medium">Settings</Text>
-                            </Collapsible.Content>
-                        </Collapsible.Root>
-                    </HStack>
+                        <HStack
+                            p={3}
+                            borderRadius="lg"
+                            _hover={{ bg: "gray.100" }}
+                            cursor="pointer"
+                            transition="0.2s"
+                        >
+                            <FiSettings size={"23px"} />
+                            <Collapsible.Root open={open}>
+                                <Collapsible.Content>
+                                    <Text fontWeight="medium">Settings</Text>
+                                </Collapsible.Content>
+                            </Collapsible.Root>
+                        </HStack>
+                    </Button>
                 </VStack>
             </Box>
             <Spacer />
-            {/* Promotion card*/}
-            <Spacer />
-            <HStack
+            <Button
+                variant="ghost"
                 mt={4}
                 p={2}
                 color="red.500"
-                cursor="pointer"
                 _hover={{ bg: "red.50" }}
                 borderRadius="md"
+                w="full"
+                justifyContent="flex-start"
+                onClick={() => {
+                    /* TODO: implement logout logic */
+                }}
             >
-                <FiLogOut size={"25px"} />
-                <Collapsible.Root open={open}>
-                    <Collapsible.Content>
-                        <Text fontWeight="medium">Logout</Text>
-                    </Collapsible.Content>
-                </Collapsible.Root>
-            </HStack>
+                <HStack>
+                    <FiLogOut size={"23px"} />{" "}
+                    <Collapsible.Root open={open}>
+                        <Collapsible.Content>
+                            <Text fontWeight="medium">Logout</Text>
+                        </Collapsible.Content>
+                    </Collapsible.Root>
+                </HStack>
+            </Button>{" "}
         </VStack>
     );
 };
